@@ -1,8 +1,9 @@
 package br.com.edukacode.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,27 +19,30 @@ import jakarta.validation.Valid;
 @RequestMapping("/lead")
 
 public class LeadController {
-@Autowired
-private LeadRepository repository;
-    
+
+    @Autowired
+    private LeadRepository repository;
+
     @PostMapping
     @Transactional
     public String criarLead(@RequestBody @Valid DadosCadastroLead dados) {
         // Implementação do método para criar um lead
         System.out.println("Lead criado com os dados: " + dados);
-        repository.save(new Lead(null, dados.nome(),dados.email(),dados.telefone(),dados.cpf()));
+        repository.save(new Lead(null, dados.nome(), dados.email(), dados.telefone(), dados.cpf()));
         return "Lead criado com sucesso!";
-        
     }
+
     @GetMapping
-    public List<DadosListagemLead> listarLeads() {
+    public Page<DadosListagemLead> listarLeads(@PageableDefault(size = 15, sort = {"nome"}) Pageable paginacao) {
         // Implementação do método para listar todos os leads
-        return repository.findAll().stream().map(DadosListagemLead::new).toList();
+        return repository.findAll(paginacao).map(DadosListagemLead::new);
     }
+
     @PutMapping
     public void atualizarLead() {
         // Implementação do método para atualizar um lead existente
     }
+
     @DeleteMapping
     public void excluirLead() {
         // Implementação do método para excluir um lead
