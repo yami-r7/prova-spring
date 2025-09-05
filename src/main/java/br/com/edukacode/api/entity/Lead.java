@@ -1,5 +1,6 @@
 package br.com.edukacode.api.entity;
 
+import br.com.edukacode.api.dto.DadosAtualizacaoLead;
 import br.com.edukacode.api.dto.DadosCadastroLead;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,5 +32,17 @@ public class Lead {
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoLead dados) {
+        if(dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if(dados.email() != null) {
+            this.email = dados.email();
+        }
+        if(dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
     }
 }
