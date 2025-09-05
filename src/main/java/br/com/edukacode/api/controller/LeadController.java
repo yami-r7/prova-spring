@@ -1,4 +1,4 @@
-package br.com.edukacode.api;
+package br.com.edukacode.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.edukacode.api.dto.DadosCadastroLead;
+import br.com.edukacode.api.dto.DadosListagemLead;
+import br.com.edukacode.api.entity.Lead;
+import br.com.edukacode.api.repository.LeadRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 

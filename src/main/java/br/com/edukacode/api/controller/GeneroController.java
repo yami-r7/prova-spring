@@ -1,4 +1,4 @@
-package br.com.edukacode.api;
+package br.com.edukacode.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.edukacode.api.dto.DadosCadastroGenero;
+import br.com.edukacode.api.dto.DadosListagemGenero;
+import br.com.edukacode.api.entity.Genero;
+import br.com.edukacode.api.repository.GeneroRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
